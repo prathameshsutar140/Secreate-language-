@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090d1b">
+<title>Binary Secret Language</title>
+<style>
+:root{color-scheme:dark;--bg:#080c18;--panel:#11182b;--panel2:#151f36;--line:#263451;--text:#edf3ff;--muted:#9aa9c5;--accent:#8b7cff;--accent2:#42d6c5;--danger:#ff758f;--shadow:0 18px 55px #0005}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 15% 0%,#242052 0,transparent 35%),radial-gradient(ellipse at 95% 15%,#103b4a 0,transparent 28%),var(--bg);color:var(--text);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;min-height:100vh}
+button,textarea,input,select{font:inherit}button{cursor:pointer}.shell{max-width:1200px;margin:auto;padding:28px 20px 60px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:26px}.brand{display:flex;align-items:center;gap:12px}.logo{width:46px;height:46px;border-radius:15px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:grid;place-items:center;font-size:23px;box-shadow:0 8px 30px #766bff55}.brand h1{font-size:19px;margin:0;letter-spacing:.2px}.brand p{margin:2px 0 0;color:var(--muted);font-size:12px}.top-actions{display:flex;gap:9px}.btn,.select,.tab{border:1px solid var(--line);background:#121a2d;color:var(--text);border-radius:11px;padding:10px 14px}.btn:hover,.tab:hover{border-color:#8276ff}.btn.primary{background:linear-gradient(110deg,#7668f6,#4e9fca);border:0;font-weight:700}.btn.subtle{background:transparent}.hero{padding:26px 0 22px}.eyebrow{color:var(--accent2);font-size:11px;font-weight:800;letter-spacing:1.7px;text-transform:uppercase}.hero h2{font-size:clamp(28px,5vw,44px);line-height:1.1;margin:9px 0 10px;letter-spacing:-1.4px}.hero p{color:var(--muted);max-width:690px;margin:0}.layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(260px,.8fr);gap:18px}.card{background:linear-gradient(155deg,#151e33ee,#0e1527f2);border:1px solid var(--line);border-radius:19px;padding:19px;box-shadow:var(--shadow)}.card h3{font-size:15px;margin:0 0 14px}.modebar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}.tab{padding:9px 13px;color:var(--muted)}.tab.active{color:#fff;border-color:#847aff;background:#38336a88}.field-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:12px 0 8px}.field-head label{font-weight:700;font-size:13px}.hint{font-size:11px;color:var(--muted)}textarea{width:100%;min-height:155px;resize:vertical;background:#080f20;border:1px solid #2a3857;border-radius:13px;color:var(--text);padding:14px;outline:none;font:13px/1.7 ui-monospace,SFMono-Regular,Consolas,monospace}textarea:focus,input:focus{border-color:var(--accent);box-shadow:0 0 0 3px #8b7cff22}.controls{display:flex;gap:9px;flex-wrap:wrap;margin:13px 0}.result{background:#091326;border:1px solid #2b3c60;border-radius:13px;padding:14px;min-height:115px;white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.75 ui-monospace,Consolas,monospace;color:#aef7e9}.stats{display:flex;gap:14px;flex-wrap:wrap;color:var(--muted);font-size:11px;margin-top:10px}.stats b{color:var(--text)}.side{display:grid;gap:18px;align-content:start}.mode-note{padding:12px;border-radius:12px;background:#1b2540;color:#c3cde2;font-size:12px}.mode-note strong{color:white}.emoji-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}.emoji-grid button{border:1px solid transparent;background:#1a2540;border-radius:9px;padding:7px 2px;font-size:19px}.emoji-grid button:hover{border-color:var(--accent)}.history{display:grid;gap:8px;max-height:300px;overflow:auto}.history-item{border:1px solid var(--line);border-radius:11px;padding:10px;background:#0d1528}.history-item small{color:var(--muted)}.history-item p{margin:5px 0 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font:11px ui-monospace,monospace}.history-item button{font-size:11px;padding:5px 8px}.footer{margin-top:20px;text-align:center;color:#8291ad;font-size:11px}.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#e9fff9;color:#102c2a;padding:10px 16px;border-radius:12px;font-weight:700;transition:.2s;box-shadow:var(--shadow)}.toast.show{opacity:1;transform:translate(-50%,0)}.hidden{display:none!important}.light{--bg:#eef2ff;--panel:#fff;--panel2:#f5f7ff;--line:#d4dced;--text:#17213a;--muted:#62708c;background:radial-gradient(ellipse at 15% 0%,#dcd8ff 0,transparent 35%),#eef2ff;color:var(--text)}.light .card{background:#ffffffdc}.light textarea,.light .result{background:#f6f8ff;color:#17213a}.light .btn,.light .tab,.light .select{background:#fff;color:#17213a}.light .mode-note,.light .history-item{background:#f0f3ff;color:#34415e}.light .mode-note strong{color:#17213a}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.side{grid-template-columns:1fr 1fr}.side .history-card{grid-column:1/-1}}@media(max-width:560px){.shell{padding:18px 13px 40px}.top{align-items:flex-start}.top-actions{flex-direction:column}.side{grid-template-columns:1fr}.hero{padding-top:13px}.card{padding:15px}.emoji-grid{grid-template-columns:repeat(8,1fr)}}
+</style>
+</head>
+<body>
+<div class="shell">
+<header class="top">
+ <div class="brand"><div class="logo">01</div><div><h1>Binary Secret Language</h1><p>Encode anything. Decode everything.</p></div></div>
+ <div class="top-actions"><button class="btn subtle" id="themeBtn" aria-label="Toggle theme">☼ Theme</button><button class="btn subtle" id="clearBtn">Clear</button></div>
+</header>
+<section class="hero"><div class="eyebrow">Universal text converter</div><h2>Your words, in another form.</h2><p>Switch between your custom 5-bit alphabet and standard UTF-8 binary. Emoji, symbols and multilingual text are supported in UTF-8 mode.</p></section>
+<div class="layout">
+<main class="card">
+ <div class="modebar" role="tablist" aria-label="Encoding mode">
+  <button class="tab active" data-mode="utf8">Universal UTF-8</button><button class="tab" data-mode="custom">Custom 5-bit</button>
+ </div>
+ <div class="mode-note" id="modeNote"><strong>Universal UTF-8:</strong> each character is converted to its UTF-8 byte sequence. Bytes are shown as 8-bit groups separated by spaces; words and punctuation are preserved exactly.</div>
+ <div class="field-head"><label for="inputText" id="inputLabel">Text to encode</label><span class="hint" id="inputHint">Text, emoji, symbols and any language</span></div>
+ <textarea id="inputText" spellcheck="false" placeholder="Type or paste your message here...">Hello 😀 ❤️</textarea>
+ <div class="controls">
+  <button class="btn primary" id="encodeBtn">Encode ↓</button><button class="btn primary" id="decodeBtn">↑ Decode</button><button class="btn" id="swapBtn">Swap fields ⇅</button><button class="btn" id="sampleBtn">Example</button>
+ </div>
+ <div class="field-head"><label for="outputText" id="outputLabel">Binary result</label><span class="hint" id="outputHint">Ready to copy</span></div>
+ <textarea id="outputText" spellcheck="false" placeholder="Your result will appear here..."></textarea>
+ <div class="controls"><button class="btn" id="copyBtn">Copy result</button><button class="btn" id="downloadBtn">Download .txt</button><button class="btn" id="saveBtn">Save to history</button></div>
+ <div class="stats"><span>Input: <b id="inputCount">0</b> chars</span><span>Output: <b id="outputCount">0</b> chars</span><span>Status: <b id="status">Ready</b></span></div>
+</main>
+<aside class="side">
+ <section class="card"><h3>Quick character panel</h3><p class="hint">Tap to insert into the input box.</p><div class="emoji-grid" id="emojiGrid"></div><div class="field-head"><label>More symbols</label></div><div class="emoji-grid" id="symbolGrid"></div></section>
+ <section class="card"><h3>Encoding guide</h3><div class="mode-note"><strong>UTF-8 mode</strong><br>Supports Unicode text, including emoji and non-English scripts. Each byte is exactly 8 bits.</div><div class="mode-note" style="margin-top:9px"><strong>Custom 5-bit mode</strong><br>A=00001 through Z=11010. Use / between words. This mode supports English letters and spaces only.</div><div class="field-head"><label>5-bit alphabet preview</label></div><div class="hint" id="alphabetPreview">A 00001 · B 00010 · C 00011 · ... · Z 11010</div></section>
+ <section class="card history-card"><div class="field-head"><h3 style="margin:0">Recent history</h3><button class="btn" id="clearHistoryBtn">Clear</button></div><div class="history" id="historyList"><p class="hint">Your saved conversions appear here.</p></div></section>
+</aside>
+</div>
+<div class="footer">Binary Secret Language · Runs locally in your browser · History is stored on this device</div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+(() => {
+ 'use strict';
+ const $ = id => document.getElementById(id);
+ const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+ const emoji = ['😀','😃','😄','😁','😆','😅','😂','🙂','😉','😊','😍','🥰','😘','😎','🤔','😭','😴','🤗','🤩','🥳','😇','🙃','😋','🤯','👍','👎','👏','🙏','💪','🤝','🔥','✨','⭐','🌈','☀️','🌙','⚡','🎉','🎂','🚀','❤️','🧡','💛','💚','💙','💜','🖤','🤍','💖','💕','💯','🌸','🌻','🍀','🍕','☕','🎮','🎵','📚','💻'];
+ const symbols = ['@','#','$','%','&','*','+','=','/','?','!','.',',',':',';','(',')','[',']','{','}','<','>','_','-','—','₹','€','£','¥','©','®','™','§','°','√','∑','π','÷','×','≤','≥','∞'];
+ let mode='utf8', history=[];
+ const bytesToBits = bytes => Array.from(bytes,b=>b.toString(2).padStart(8,'0')).join(' ');
+ const encodeUtf8 = text => bytesToBits(new TextEncoder().encode(text));
+ function decodeUtf8(bits){
+   const clean=bits.trim();
+   if(!clean) return '';
+   if(!/^[01\s]+$/.test(clean)) throw Error('UTF-8 binary may contain only 0, 1 and spaces.');
+   const compact=clean.replace(/\s/g,'');
+   if(compact.length%8) throw Error('UTF-8 binary must contain complete 8-bit bytes. Found '+(compact.length%8)+' extra bit(s).');
+   const bytes=new Uint8Array(compact.match(/.{8}/g).map(x=>parseInt(x,2)));
+   try{return new TextDecoder('utf-8',{fatal:true}).decode(bytes)}catch(e){throw Error('Invalid UTF-8 byte sequence. Check the binary groups.')}
+ }
+ function encodeCustom(text){
+   const words=text.toUpperCase().trim().split(/\s+/).filter(Boolean);
+   if(!words.length)return '';
+   const unsupported=[...new Set([...text.toUpperCase()].filter(c=>c!==' '&&!alphabet.includes(c)))];
+   if(unsupported.length) throw Error('Custom 5-bit mode supports A–Z and spaces only. Unsupported: '+unsupported.join(' ')+'. Use Universal UTF-8 for emoji and symbols.');
+   return words.map(w=>[...w].map(c=>(alphabet.indexOf(c)+1).toString(2).padStart(5,'0')).join('')).join('/');
+ }
+ function decodeCustom(code){
+   const clean=code.trim();
+   if(!clean)return '';
+   if(!/^[01/]+$/.test(clean))throw Error('Custom mode accepts only 0, 1 and / separators.');
+   return clean.split('/').map(word=>{
+     if(!word)throw Error('Empty word detected. Remove repeated or leading/trailing / separators.');
+     if(word.length%5)throw Error('Each custom letter must contain exactly 5 bits. One word has '+word.length+' bits.');
+     let out='';
+     for(let i=0;i<word.length;i+=5){const n=parseInt(word.slice(i,i+5),2);if(n<1||n>26)throw Error('Invalid 5-bit letter: '+word.slice(i,i+5));out+=alphabet[n-1]}
+     return out;
+   }).join(' ');
+ }
+ function toast(msg){$('toast').textContent=msg;$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),2200)}
+ function updateStats(){$('inputCount').textContent=[...$('inputText').value].length;$('outputCount').textContent=[...$('outputText').value].length}
+ function convert(direction){
+   const input=$('inputText').value;
+   try{
+     const result=direction==='encode'?(mode==='utf8'?encodeUtf8(input):encodeCustom(input)):(mode==='utf8'?decodeUtf8(input):decodeCustom(input));
+     $('outputText').value=result;$('status').textContent='Success';$('outputHint').textContent=direction==='encode'?'Encoded successfully':'Decoded successfully';updateStats();toast(direction==='encode'?'Encoding complete':'Decoding complete');
+   }catch(err){$('status').textContent='Check input';$('outputHint').textContent='Conversion error';toast(err.message)}
+ }
+ function setMode(next){
+   mode=next;document.querySelectorAll('[data-mode]').forEach(b=>b.classList.toggle('active',b.dataset.mode===mode));
+   $('modeNote').innerHTML=mode==='utf8'?'<strong>Universal UTF-8:</strong> each character is converted to its UTF-8 byte sequence. Bytes are shown as 8-bit groups separated by spaces; words and punctuation are preserved exactly.':'<strong>Custom 5-bit:</strong> A=00001 through Z=11010. Letters are joined without spaces; / separates words. This mode accepts A–Z and spaces only.';
+   $('inputText').value='';$('outputText').value='';$('inputLabel').textContent=mode==='utf8'?'Text or UTF-8 binary':'Text or 5-bit binary';$('inputHint').textContent=mode==='utf8'?'Emoji, symbols and all languages':'A–Z letters; / separates words';$('outputLabel').textContent='Conversion result';updateStats();
+ }
+ function addHistory(){
+   const item={id:Date.now(),mode,direction:'conversion',input:$('inputText').value,output:$('outputText').value,date:new Date().toLocaleString()};
+   if(!item.input||!item.output){toast('Convert something before saving.');return}
+   history.unshift(item);history=history.slice(0,30);persistHistory();renderHistory();toast('Saved to local history');
+ }
+ function persistHistory(){try{localStorage.setItem('bsl-history-v1',JSON.stringify(history))}catch(e){toast('Could not save history in this browser.')}}
+ function renderHistory(){
+   const list=$('historyList');list.innerHTML='';
+   if(!history.length){list.innerHTML='<p class="hint">Your saved conversions appear here.</p>';return}
+   history.forEach(item=>{const el=document.createElement('div');el.className='history-item';const meta=document.createElement('small');meta.textContent=item.mode.toUpperCase()+' · '+item.date;const p=document.createElement('p');p.textContent=item.output;const btn=document.createElement('button');btn.className='btn';btn.textContent='Load';btn.addEventListener('click',()=>{$('inputText').value=item.input;$('outputText').value=item.output;setMode(item.mode);$('inputText').value=item.input;$('outputText').value=item.output;updateStats();toast('History item loaded')});el.append(meta,p,btn);list.append(el)})
+ }
+ function buildGrid(id,items){const grid=$(id);items.forEach(char=>{const b=document.createElement('button');b.type='button';b.textContent=char;b.title='Insert '+char;b.addEventListener('click',()=>{const field=$('inputText'),start=field.selectionStart,end=field.selectionEnd;field.setRangeText(char,start,end,'end');field.focus();updateStats()});grid.append(b)})}
+ $('encodeBtn').addEventListener('click',()=>convert('encode'));$('decodeBtn').addEventListener('click',()=>convert('decode'));
+ $('swapBtn').addEventListener('click',()=>{const a=$('inputText').value;$('inputText').value=$('outputText').value;$('outputText').value=a;updateStats();toast('Fields swapped')});
+ $('copyBtn').addEventListener('click',async()=>{if(!$('outputText').value){toast('Nothing to copy');return}try{await navigator.clipboard.writeText($('outputText').value);toast('Copied to clipboard')}catch(e){$('outputText').select();document.execCommand('copy');toast('Copied') }});
+ $('downloadBtn').addEventListener('click',()=>{const content=$('outputText').value;if(!content){toast('Nothing to download');return}const blob=new Blob([content],{type:'text/plain;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='binary-secret-language.txt';a.click();URL.revokeObjectURL(url)});
+ $('saveBtn').addEventListener('click',addHistory);$('clearBtn').addEventListener('click',()=>{$('inputText').value='';$('outputText').value='';$('status').textContent='Ready';updateStats()});
+ $('clearHistoryBtn').addEventListener('click',()=>{history=[];persistHistory();renderHistory();toast('History cleared')});
+ $('sampleBtn').addEventListener('click',()=>{if(mode==='utf8'){$('inputText').value='Hello 😀 ❤️ — नमस्ते! ₹100 + 25%';convert('encode')}else{$('inputText').value='GOOD MORNING';convert('encode')}});
+ $('themeBtn').addEventListener('click',()=>document.body.classList.toggle('light'));
+ document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mode)));
+ $('inputText').addEventListener('input',updateStats);$('outputText').addEventListener('input',updateStats);
+ buildGrid('emojiGrid',emoji);buildGrid('symbolGrid',symbols);
+ try{history=JSON.parse(localStorage.getItem('bsl-history-v1')||'[]')}catch(e){history=[]}renderHistory();updateStats();
+})();
+</script>
+</body>
+</html>
